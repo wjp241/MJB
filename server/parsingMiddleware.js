@@ -1,12 +1,5 @@
 var TesseractJS = require('tesseract.js')
 
-const testText1 = 'account\nuser_id serial PRIMARY KEY\n username VARCHAR (50) UNIQUE NOT NULL\npassword VARCHAR (50) NOT NULL\n\n'
-const testText2 = 'role\nrole_id serial PRIMARY KEY\nrole_name VARCHAR (255) UNIQUE NOT NULL\n'
-
-const testImgArr = ['../userNameTable.png', '../teamTable3.png']
-
-const dataArr = [testText1,testText2];
-
 const imageParser = {
 
     textToObj: (textArr) => {
@@ -48,9 +41,9 @@ const imageParser = {
 
 
 
-    runTesseract: (arr) => {
-        // const imgArr = req.body;
-        const imgArr = arr;
+    runTesseract: (req,res,next) => {
+        const imgArr = req.body;
+        // const imgArr = arr;
         promiseArr = [];
 
         for(let key in imgArr){
@@ -70,11 +63,11 @@ const imageParser = {
         }
 
         Promise.all(promiseArr).then((data) => {
-            // res.locals.tables = data;
-            // res.locals.url = req.body.url;
             TesseractJS.terminate();
+            res.locals.tables = data;
+            res.locals.url = req.body.url;
             console.log('DATA: ',data)
-            // next();
+            next();
         }).catch((err) => {
             console.log('!!!!!!!!', err)
         })
