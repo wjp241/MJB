@@ -64,7 +64,9 @@ const imageParser = {
                       console.log('====GOT TEXT');
                       resolve(imageParser.cleanText(result.text));
                   })
-            })
+            });
+
+            promiseArr.push(abc)
         }
 
         Promise.all(promiseArr).then((data) => {
