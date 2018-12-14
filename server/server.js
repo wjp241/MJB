@@ -1,5 +1,4 @@
 const Express = require('express');
-
 const BodyParser = require('body-parser');
 const FormDataParser = require('express-form-data');
 
@@ -22,7 +21,7 @@ App.get('/', (req, res) => {
 
 App.post('/', (req, res) => {
     console.log('received req', req.body);
-    res.end('OK');
+    // res.end('OK');
 });
 
 
