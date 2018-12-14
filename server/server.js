@@ -46,10 +46,10 @@ App.get('/auth', function(req, res){
     res.json(JSON.stringify(token))
   })
 
-App.get('/', (req, res) => {
-    console.log('get request');
-    res.end('OK');
-})
+// App.get('/', (req, res) => {
+//     console.log('get request');
+//     res.end('OK');
+// })
 // App.get('/auth', (req,res) => {                
 //     res.send('hi')
 //     })
