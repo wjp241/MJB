@@ -26,6 +26,7 @@
     "@babel/core": "^7.2.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-form-data": "^2.0.6",
     "node-tesseract": "^0.2.7",
     "pg": "^7.7.1",
     "react": "^16.6.3",
@@ -36,7 +37,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",
+    "body-parser": "^1.18.3",
     "nodemon": "^1.18.8",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",

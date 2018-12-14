@@ -28,8 +28,8 @@
 //     }
 // }
 
-const mockData = {
-    0 : {
+const mockData = [
+    {
         tableName: 'user',
          table: {
             0: 'user_id serial PRIMARY KEY',
@@ -37,11 +37,11 @@ const mockData = {
             2: 'lastName VARCHAR'
         },
     },
-    1: {
+     {
         tableName: 'team',
         table: {
             0: 'ID: serial FOREIGN KEY',
             1: 'TNAME: VARCHAR'
         }
     }
-}
+]
