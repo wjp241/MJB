@@ -22,7 +22,7 @@ App.get('/', (req, res) => {
 
 App.post('/', (req, res) => {
     console.log('received req', req.body);
-    res.end('OK');
+    // res.end('OK');
 });
 
 App.listen(3000);

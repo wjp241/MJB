@@ -5,7 +5,7 @@ import Display from './Display.jsx';
 function Container (props) {
     return (
         <div>
-            <Upload addToState={props.addToState} submit={props.submit}/>
+            <Upload addToState={props.addToState} submit={props.submit} input={props.input} remove={props.remove}/>
             <hr></hr>
             <Display images={props.images} />
         </div>
