@@ -72,6 +72,7 @@ const imageParser = {
         Promise.all(promiseArr).then((data) => {
             // res.locals.tables = data;
             // res.locals.url = req.body.url;
+            TesseractJS.terminate();
             console.log('DATA: ',data)
             // next();
         }).catch((err) => {

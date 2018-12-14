@@ -1,7 +1,6 @@
 const Express = require('express');
 const BodyParser = require('body-parser');
 const FormDataParser = require('express-form-data');
-<<<<<<< HEAD
 const parseImage = require('./parsingMiddleware');
 const config = require('./githubConfig');
 // const buildQuery = require ('') //need to fill this in
@@ -16,11 +15,6 @@ const githubOAuth = require('github-oauth')({
     loginURI: '/auth',
     callbackURI: '/callback'
   })
-=======
-
-const App = Express();
-
->>>>>>> 60bb7688200fea483dec7ff0765ebf4b5d2af51b
 
 App.use(BodyParser.urlencoded({ extended: false}));
 
@@ -62,11 +56,7 @@ App.get('/', (req, res) => {
 
 App.post('/', parseImage.runTesseract,(req, res) => {
     console.log('received req', req.body);
-    // res.end('OK');
+    res.end('OK');
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 60bb7688200fea483dec7ff0765ebf4b5d2af51b
 
 App.listen(PORT);
