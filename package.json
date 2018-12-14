@@ -1,0 +1,44 @@
+{
+  "name": "hufflepuff",
+  "version": "1.0.0",
+  "description": "scratchy scratch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "webpack-dev-server --devtool inline-source-map --hot",
+    "webpack": "webpack",
+    "start": "nodemon ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbbryan14/MJB.git"
+  },
+  "keywords": [
+    "funtime"
+  ],
+  "author": "Marlon/Jae/Bryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbbryan14/MJB/issues"
+  },
+  "homepage": "https://github.com/bbbryan14/MJB#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "node-tesseract": "^0.2.7",
+    "pg": "^7.7.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "ws": "^6.1.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "nodemon": "^1.18.8",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
