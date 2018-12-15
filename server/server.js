@@ -5,7 +5,9 @@ const config = require('./githubConfig');
 const buildQuery = require ('./buildQuery.js');
 const writeDB = require ('./writeDB.js');
 const Staging = require('./Staging.js')
-const FormData = require('express-form-data');
+// const FormData = require('express-form-data');
+// const fileUpload = require('express-fileupload');
+
 
 const PORT = 3000;
 
@@ -20,7 +22,8 @@ const githubOAuth = require('github-oauth')({
   })
 
 App.use(BodyParser.urlencoded({ extended: false}));
-App.use(FormData.parse());
+// App.use(FormData.parse());
+// App.use(fileUpload());
 
 App.use((req, res, next) => {
     res.set({
@@ -47,6 +50,6 @@ githubOAuth.on('token', function(token, serverResponse) {
   res.json(JSON.stringify(token))
 })
 
-App.post('/', Staging, parseImage.runTesseract, buildQuery.tbSyn, writeDB.writeDB);
+App.post('/', Staging, parseImage.runTesseract, buildQuery.tablToSyntx, writeDB.writeDB);
 
 App.listen(PORT);

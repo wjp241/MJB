@@ -1,4 +1,6 @@
 var TesseractJS = require('tesseract.js')
+const fs = require('fs');
+const path = require('path');
 
 const imageParser = {
 
@@ -42,8 +44,9 @@ const imageParser = {
 
 
     runTesseract: (req,res,next) => {
-        const imgArr = req.body;
-        console.log(req.body);
+        const imgArr = [];
+        imgArr.push(fs.readFileSync(path.resolve(__dirname, './temp/image.png')))
+        // console.log(req.body);
         promiseArr = [];
 
         for(let key in imgArr){
@@ -51,7 +54,7 @@ const imageParser = {
             const abc = new Promise((resolve,reject) => {
                 TesseractJS.recognize(imgArr[key])
                   .progress((p) => {
-                //   console.log('progress',p)
+                  console.log('progress',p)
                   })
                   .then((result) => {
                       console.log('====GOT TEXT');
