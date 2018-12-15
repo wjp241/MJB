@@ -1,13 +1,30 @@
 const Express = require('express');
 const BodyParser = require('body-parser');
-const FormDataParser = require('express-form-data');
-// const parseImage = require('') //need to fill this in
-// const buildQuery = require ('') //need to fill this in
+const parseImage = require('./parsingMiddleware');
+const config = require('./githubConfig');
+const buildQuery = require ('./buildQuery.js');
+const writeDB = require ('./writeDB.js');
+const Staging = require('./Staging.js')
+// const FormData = require('express-form-data');
+// const fileUpload = require('express-fileupload');
+
+
+const PORT = 3000;
 
 const App = Express();
 
+const githubOAuth = require('github-oauth')({
+    githubClient: config.GITHUB_KEY,
+    githubSecret: config.GITHUB_SECRET,
+    baseURL: 'http://localhost:' + PORT,
+    loginURI: '/auth',
+    callbackURI: '/callback'
+  })
+
 App.use(BodyParser.urlencoded({ extended: false}));
-App.use(FormDataParser.parse());
+// App.use(FormData.parse());
+// App.use(fileUpload());
+
 App.use((req, res, next) => {
     res.set({
         'Access-Control-Allow-Origin': '*'
@@ -15,14 +32,24 @@ App.use((req, res, next) => {
     next();
 })
 
-App.get('/', (req, res) => {
-    console.log('get request');
-    res.end('OK');
-})
-
-App.post('/', (req, res) => {
-    console.log('received req', req.body);
-    res.end('OK');
+App.get('/auth', function(req, res){
+    console.log("started oauth");
+    return githubOAuth.login(req, res);
 });
 
-App.listen(3000);
+App.get("/callback", function(req, res){
+  console.log("received callback");
+  return githubOAuth.callback(req, res);
+});
+
+githubOAuth.on('error', function(err) {
+  console.error('there was a login error', err)
+})
+
+githubOAuth.on('token', function(token, serverResponse) {
+  res.json(JSON.stringify(token))
+})
+
+App.post('/', Staging, parseImage.runTesseract, buildQuery.tablToSyntx, writeDB.writeDB);
+
+App.listen(PORT);
