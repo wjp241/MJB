@@ -5,24 +5,18 @@ const uri =
 const pg = new postgres.Client(uri);
 
 pg.connect(err => {
-    if (err) throw new Error(err);
+  if (err) throw new Error(err);
 });
 
-  const obj  = {
-    writeDB: (request, response) => {
-      
-          // make SQL queries
-        pg.query(response.locals.query)
-        .then(result => {
-          console.log("this is the result", result);
-        }) //close db connection
-        // .then(()=>pg.end())
-        .catch(err => console.log(err))
-        
-      response.send(response.locals.query);
-    }
-
+const obj = {
+  writeDB: (request, response) => {
+    pg.query(response.locals.query)
+      .then(result => {
+        console.log("this is the result", result);
+      })
+      .catch(err => console.log(err));
   }
+};
 // function writeDB(request, response) {
 //   pg.connect(
 //     uri,
