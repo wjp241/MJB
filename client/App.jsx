@@ -28,7 +28,8 @@ class App extends React.Component {
         let reqBody = new FormData();
 
         for (let i = this.state.images.length-1; i > -1; i--) {
-            reqBody.append(`${i}`, this.state.images[i]);
+            let a = new Blob([this.state.images[i]], {type: 'image/png'});
+            reqBody.append(`${i}`, a);
         }
 
         reqBody.append('url', this.state.url)
@@ -38,9 +39,9 @@ class App extends React.Component {
             body: reqBody
         }
 
-        // for(let key of reqBody.entries()) {
-        //     console.log(key)
-        // }
+        for(let key of reqBody.entries()) {
+            console.log(key)
+        }
 
         this.setState({uploading: true});
  

@@ -23,7 +23,7 @@ const obj = {
   tbSyn: (request, response, next) => {
     let oneStr = "";
   
-    res.locals.tables.forEach(objEle => {
+    response.locals.tables.forEach(objEle => {
       let tableName = objEle.tableName;
       let tableArr = Object.values(objEle.table);
       let head = `CREATE TABLE ${tableName} (`;
@@ -36,7 +36,7 @@ const obj = {
       oneStr += head + body + tail;
     });
   
-    res.locals.query = oneStr;
+    response.locals.query = oneStr;
     next();
   }
 }
