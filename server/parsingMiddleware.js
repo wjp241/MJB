@@ -43,7 +43,7 @@ const imageParser = {
 
     runTesseract: (req,res,next) => {
         const imgArr = req.body;
-        // const imgArr = arr;
+        console.log(req.body);
         promiseArr = [];
 
         for(let key in imgArr){
